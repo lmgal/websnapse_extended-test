@@ -17,7 +17,6 @@ export function parseRule(rule, id) {
       return[requires.length, symbol, consumes.length, produces.length, delay];
     } */
     if (testRes) {
-        console.log("Test Res");
         var [, requires, grouped, char, symbol, consumes, produces, delayStr] = testRes
         const delay = parseInt(delayStr, 10)
 
@@ -35,8 +34,6 @@ export function parseRule(rule, id) {
         if (produces == ""){
             produces = 1;
         }
-
-        console.log({'id': id, 'requires': requires, 'char': char, 'grouped': grouped, 'symbol':symbol, 'consumes': consumes, 'produces': produces, 'delay': parseInt(delayStr)} );
 
         return [parseInt(requires), parseInt(grouped), symbol, parseInt(consumes), parseInt(produces), delay];
     } else if (forgetRes) {
@@ -121,7 +118,6 @@ export function step(neurons, time, isRandom, handleStartGuidedMode, handleSimul
                         shouldEnd = false;
                     }
                 }
-                console.log("should end2", shouldEnd);
                 if (validRules.length == 1) {
                     draft[neuron.id].currentRule = validRules[0];
                     draft[neuron.id].chosenRule = validRules[0];
@@ -258,8 +254,10 @@ export function step(neurons, time, isRandom, handleStartGuidedMode, handleSimul
 
     })
     localStorage.setItem(time + 'sec', JSON.stringify(newStates));
-    return newStates;
 
+    console.timeEnd('Compute')
+    console.time('Render')
+    return newStates;
 }
 
 export function null_step(neurons){

@@ -659,6 +659,8 @@ function App() {
   }
 
   const onForward = async () => {
+    console.time('Compute')
+
     if (time == 0) {
       //copy
       console.log("FORWARD");
@@ -677,6 +679,7 @@ function App() {
     } else {
       alert("Simulation has ended.");
     }
+    console.timeEnd('Render')
   }
 
 
